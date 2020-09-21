@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class GestionCliente {
     Scanner scan = new Scanner(System.in);
-    Cliente cliente = new Cliente();
+    private Cliente cliente = new Cliente();
 
     public void modificarDatosDeCliente(Cliente cliente){
         System.out.println("1. Codigo de indentificacion: " + cliente.getCodigoCliente());
