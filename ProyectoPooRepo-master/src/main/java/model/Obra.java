@@ -5,63 +5,70 @@ import java.util.Calendar;
 
 public class Obra
 {
-    long pid;
-    String titulo;
-    Calendar fecha;
-    Double precioRef;
-    String dimensiones;
-    ArrayList<Artista> artista= new ArrayList<Artista>();
-
+    private long pid;
+    private String titulo;
+    private Calendar fecha;
+    private Double precioRef;
+    private String dimensiones;
+    private ArrayList<Artista> artista= new ArrayList<Artista>();
 
 
     // CONSTRUCTORES
+    public Obra()
+    {   }
 
-    public Obra(long pid, String titulo, Calendar fecha, Double precioRef, String dimensiones, Artista artista) {
+    public Obra(long pid, String titulo, Calendar fecha, Double precioRef, String dimensiones)
+    {
         this.pid = pid;
         this.titulo = titulo;
         this.fecha = fecha;
         this.precioRef = precioRef;
         this.dimensiones = dimensiones;
-        this.artista.add(artista);
+
     }
 
+    // ACCESORS
+    public long getPid(){return pid;}
+    public void setPid(long pid){this.pid = pid;}
 
-    // GET
+    public String getTitulo(){return titulo;}
+    public void setTitulo(String titulo){this.titulo = titulo;}
 
-    public long getPid() {
-        return pid;
-    }
+    public Calendar getFecha(){return fecha;}
+    public void setFecha(Calendar fecha){this.fecha = fecha;}
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public Double getPrecioRef(){return precioRef;}
+    public void setPrecioRef(Double precioRef){this.precioRef = precioRef;}
 
-    public Calendar getFecha() {
-        return fecha;
-    }
+    public String getDimensiones(){return dimensiones;}
+    public void setDimensiones(String dimensiones){this.dimensiones = dimensiones;}
 
-    public Double getPrecioRef() {
-        return precioRef;
-    }
+    public ArrayList<Artista> getArtista(){return artista;}
+    public void setArtista(Artista artista){this.artista.add(artista);}
 
-    public String getDimensiones() {
-        return dimensiones;
-    }
-
-    public ArrayList<Artista> getArtista() {
-        return artista;
-    }
 
     // toString
 
-    public String toString(int o) {
+    public String toString()
+    {
         return  ", Titulo='" + titulo + '\'' +
-                ", Fecha=" + fecha +
+                ", Fecha=" + fecha.get(Calendar.YEAR) +
                 ", PrecioRef=" + precioRef +
                 ", Dimensiones='" + dimensiones + '\'' +
+                ",Autor= "+artista.get(0).getNombres()+
                 ", Foto=" + "todavia no hay foto sorry, pero en la entrega 3 si abra" +
                 '}';
     }
+
+    public String toString(int o)
+    {
+        String nombreA = artista.get(0).getNombres();
+        nombreA += artista.get(0).getApellidos();
+
+        int ano = fecha.get(Calendar.YEAR);
+        return titulo+"."+nombreA+"."+ano+"."+pid;
+    }
+
 
 
 }
