@@ -11,23 +11,21 @@ import java.util.Scanner;
 
 public class ControlGaleria
 {
-    // models
+    // listas
     ArrayList<Cliente> listaClientes= new ArrayList<>();
     ArrayList<Compra> listaCompras= new ArrayList<>();
     ArrayList<Obra> listaObras= new ArrayList<>();
     ArrayList<Artista> listaArtistas= new ArrayList<>();
 
-    // control
+    // controladores
     GestionCliente controlClientes;
     GestionObras controlObras= new GestionObras();
 
     // COSTRUCTORES
     public ControlGaleria()
-    {
+    {  }
 
-    }
-
-    // GETTERS - I
+    // GETTERS
     public ArrayList<Cliente> getListaClientes(){return listaClientes;}
     public void setListaClientes(ArrayList<Cliente> listaClientes){this.listaClientes = listaClientes;}
 
@@ -47,10 +45,9 @@ public class ControlGaleria
     public void setControlObras(GestionObras controlObras){this.controlObras = controlObras;}
 
 
-    // METODOS - I
+    // METODOS
     public void datosPrueba()
     {
-
         Calendar fechaAgregar1 = Calendar.getInstance();
         Calendar fechaAgregar2 = Calendar.getInstance();
         Calendar fechaAgregar3 = Calendar.getInstance();
@@ -68,57 +65,52 @@ public class ControlGaleria
         Calendar fechaAgregar15 = Calendar.getInstance();
 
 
-
-
         //Obras
-        fechaAgregar1.set(1503,2,14);
+        fechaAgregar1.set(Calendar.YEAR,1503);
         Obra o1 = new Obra(1234567,"la gioconda",fechaAgregar1,1000.0,"pequeña");
 
-
-        fechaAgregar2.set(1889,4,15);
+        fechaAgregar2.set(Calendar.YEAR,1889);
         Obra o2 = new Obra(2345678,"la noche estrellada",fechaAgregar2,2000.0,"grande");
 
-        fechaAgregar3.set(1495,8,24);
+        fechaAgregar3.set(Calendar.YEAR,1495);
         Obra o3 = new Obra(3456789,"la ultima cena",fechaAgregar3,42000.0,"normal");
 
-        fechaAgregar4.set(1665,11,23);
+        fechaAgregar4.set(Calendar.YEAR,1665);
         Obra o4 = new Obra(4567890,"la joven de la perla",fechaAgregar4,6000.0,"pequeña");
 
-        fechaAgregar5.set(1656,4,22);
+        fechaAgregar5.set(Calendar.YEAR,1656);
         Obra o5 = new Obra(5678901,"la meninas",fechaAgregar5,89000.0,"normal");
 
-        fechaAgregar6.set(1908,6,14);
+        fechaAgregar6.set(Calendar.YEAR,1908);
         Obra o6 = new Obra(6789012,"el beso ",fechaAgregar6,32000.0,"grande");
 
-        fechaAgregar7.set(1889,9,25);
+        fechaAgregar7.set(Calendar.YEAR,1889);
         Obra o7 = new Obra(9012345,"autorretrato de vincent van gogh",fechaAgregar7,657000.0,"normal");
 
-        fechaAgregar8.set(1888,6,22);
-        Obra o8 = new Obra(0123456,"terraza de cafe por lan noche",fechaAgregar8,12000.0,"grande");
+        fechaAgregar8.set(Calendar.YEAR,1888);
+        Obra o8 = new Obra(20123456,"terraza de cafe por lan noche",fechaAgregar8,12000.0,"grande");
 
-        fechaAgregar9.set(1482,8,13);
+        fechaAgregar9.set(Calendar.YEAR,1482);
         Obra o9 = new Obra(9877654,"el nacimiento de venus",fechaAgregar9,88000.0,"grande");
 
-
         // Artista
-        fechaAgregar10.set(1503,12,6);
+        fechaAgregar10.set(Calendar.YEAR,1503);
         Artista a1 = new Artista(1234,1005105226,"leonardo"," da vinci",fechaAgregar10,31158542);
 
-        fechaAgregar11.set(1853,6,30);
+        fechaAgregar11.set(Calendar.YEAR,1853);
         Artista a2 = new Artista(3456,1111111111,"vincent"," van gogh",fechaAgregar11,313313313);
 
-        fechaAgregar12.set(1632,12,15);
+        fechaAgregar12.set(Calendar.YEAR,1632);
         Artista a3 = new Artista(4567,222222222,"johannes"," vermeer",fechaAgregar12,345543543);
 
-        fechaAgregar13.set(1599,2,6);
+        fechaAgregar13.set(Calendar.YEAR,1599);
         Artista a4 = new Artista(6789,333333333,"diego"," velazquez",fechaAgregar13, 456765456);
 
-        fechaAgregar14.set(1914,2,6);
+        fechaAgregar14.set(Calendar.YEAR,1914);
         Artista a5 = new Artista( 8901, 444444444,"Gustav"," Klimt",fechaAgregar14,567876567);
 
-        fechaAgregar15.set(1459,4,1);
-        Artista a6 = new Artista(0123,555555555,"sandro"," botticelli",fechaAgregar15,987678987);
-
+        fechaAgregar15.set(Calendar.YEAR,1459);
+        Artista a6 = new Artista(20123,555555555,"sandro"," botticelli",fechaAgregar15,987678987);
 
 
         // asignar artistas y obra
@@ -168,105 +160,106 @@ public class ControlGaleria
         this.listaArtistas.add(a5);
         this.listaArtistas.add(a6);
 
-
-        System.out.println(o1.toString());
-
     }
-
+    //1.Ver listado de Obras disponibles
     public void opcion1()
     {
         this.controlObras.VerObrasDisponibles(listaCompras,listaObras);
-
-        System.out.println("volver menu?(s/n)");
-        Scanner entrada= new Scanner(System.in);
-        String res = entrada.nextLine();
-        char res1 = res.charAt(0);
-        if(res1=='s')
-        {
-            for (int i = 0; i < 100; ++i) System.out.println();
-        }
+        espacio();
     }
-
+    //2.Buscar una Obra por título, artista o año
     public void opcion2()
     {
         Scanner ingreso = new Scanner(System.in);
         System.out.println("Ingrese el criterio de busqueda(titulo/artista/año): ");
         String criterio = ingreso.nextLine();
-
         controlObras.BuscarObra(criterio,listaObras);
-
-        // espacio
-        System.out.println("volver menu?(s/n)");
-        Scanner entrada= new Scanner(System.in);
-        String res = entrada.nextLine();
-        char res1 = res.charAt(0);
-        if(res1=='s')
-        {
-            for (int i = 0; i < 100; ++i) System.out.println();
-        }
-
+        espacio();
     }
-
+    //3.Insertar una Obra
     public void opcion3()
     {
-
         controlObras.InsertarObra(listaObras,listaArtistas);
-        // espacio
-        System.out.println("volver menu?(s/n)");
-        Scanner entrada= new Scanner(System.in);
-        String res = entrada.nextLine();
-        char res1 = res.charAt(0);
-        if(res1=='s')
-        {
-            for (int i = 0; i < 100; ++i) System.out.println();
-        }
-
+        espacio();
     }
-
+    //4.Modificar una Obra
     public void opcion4()
     {
         System.out.println("Ingrese el codigo de la obra a buscar:");
         Scanner ingreso = new Scanner(System.in);
         long pid = ingreso.nextLong();
-
         controlObras.modifiObra(pid,listaObras,listaArtistas);
-        // espacio
-        System.out.println("volver menu?(s/n)");
-        Scanner entrada= new Scanner(System.in);
-        String res = entrada.nextLine();
-        char res1 = res.charAt(0);
-        if(res1=='s')
-        {
-            for (int i = 0; i < 100; ++i) System.out.println();
-        }
+        espacio();
     }
-
-
+    //5.Eliminar una Obra
+    public void opcion5()
+    {
+        espacio();
+    }
+    //6.Ver listado de Clientes registrados en el sistema
+    public void opcion6()
+    {
+        espacio();
+    }
+    //7.Buscar un Cliente
+    public void opcion7()
+    {
+        espacio();
+    }
+    //8.Insertar Cliente
     public void opcion8()
     {
-
+        espacio();
+    }
+    //9.Modificar datos de Cliente
+    public void opcion9()
+    {
+        espacio();
+    }
+    //10.Eliminar un Cliente
+    public void opcion10()
+    {
+espacio();
+    }
+    //11.Realizar compra de una Obra
+    public void opcion11()
+    {
+espacio();
+    }
+    //12.Eliminar compra de obra
+    public void opcion12()
+    {
+espacio();
+    }
+    //13.Ver listado de Compras existentes
+    public void opcion13()
+    {
+        espacio();
+    }
+    //14.Ver listado de Compras para un mes y año específico insertado por el usuario
+    public void opcion14()
+    {
+        espacio();
+    }
+    //15.Ver listado de Artistas más vendidos
+    public void opcion15()
+    {
+        espacio();
     }
 
+
+    // ESTOS SON PARA LOS DESARROLLADORES
+    //17.Mostrar lista Obras
     public void opcion17()
     {
         System.out.println("\n***Lista Obras***\n");
-
         for(Obra mostrar: this.listaObras)
         {
             System.out.println("- "+mostrar.toString(1));
         }
-
-        // espacio
-
-        System.out.println("volver menu?(s/n)");
-        Scanner entrada= new Scanner(System.in);
-        String res = entrada.nextLine();
-        char res1 = res.charAt(0);
-        if(res1=='s')
-        {
-            for (int i = 0; i < 100; ++i) System.out.println();
-        }
+        espacio();
     }
+    //18.Mostrar lista Artistas
     public void opcion18()
     {
         System.out.println("\n***Lista Artistas***\n");
@@ -274,8 +267,32 @@ public class ControlGaleria
         {
             System.out.println("- "+mostrar.toString(1));
         }
+        espacio();
+    }
+    //19.Mostrar lista Compras
+    public void opcion19()
+    {
+        System.out.println("\n***Lista Compras***\n");
+        for(Compra mostrar: listaCompras)
+        {
+            System.out.println("- "+mostrar.toString());
+        }
+        espacio();
+    }
+    //20.Mostrar lista Clientes
+    public void opcion20()
+    {
+        System.out.println("\n***Lista Clientes***\n");
+        for(Cliente mostrar: listaClientes)
+        {
+            System.out.println("- "+mostrar.toString());
+        }
+        espacio();
+    }
 
-        // espacio
+    private void espacio()
+    {
+        // espacio porque no como borrar pantalla
         System.out.println("volver menu?(s/n)");
         Scanner entrada= new Scanner(System.in);
         String res = entrada.nextLine();
@@ -285,17 +302,5 @@ public class ControlGaleria
             for (int i = 0; i < 100; ++i) System.out.println();
         }
     }
-    public void opcion19()
-    {
-
-    }
-    public void opcion20()
-    {
-
-    }
-
-
-
-
 
 }

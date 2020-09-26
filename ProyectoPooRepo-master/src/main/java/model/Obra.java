@@ -10,12 +10,11 @@ public class Obra
     private Calendar fecha;
     private Double precioRef;
     private String dimensiones;
-    private ArrayList<Artista> artista= new ArrayList<Artista>();
-
+    private ArrayList<Artista> artista= new ArrayList<>();
 
     // CONSTRUCTORES
     public Obra()
-    {   }
+    { }
 
     public Obra(long pid, String titulo, Calendar fecha, Double precioRef, String dimensiones)
     {
@@ -24,7 +23,6 @@ public class Obra
         this.fecha = fecha;
         this.precioRef = precioRef;
         this.dimensiones = dimensiones;
-
     }
 
     // ACCESORS
@@ -64,11 +62,8 @@ public class Obra
     {
         String nombreA = artista.get(0).getNombres();
         nombreA += artista.get(0).getApellidos();
-
         int ano = fecha.get(Calendar.YEAR);
         return titulo+"."+nombreA+"."+ano+"."+pid;
     }
-
-
 
 }

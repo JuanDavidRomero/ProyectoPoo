@@ -10,10 +10,8 @@ public class PantallaGaleria
 
     public static void main(String[] args)
     {
-
         ControlGaleria galeria = new ControlGaleria();
         galeria.datosPrueba();
-
 
         boolean seguir = true;
         do {
@@ -55,30 +53,25 @@ public class PantallaGaleria
                 case 2:{galeria.opcion2();}break;
                 case 3:{galeria.opcion3(); }break;
                 case 4:{galeria.opcion4();}break;
-                case 5:{ }break;
-                case 6:{ }break;
-                case 7:{ }break;
-                case 8:{ }break;
-                case 9:{ }break;
-                case 10:{ }break;
-                case 11:{ }break;
-                case 12:{ }break;
-                case 13:{ }break;
-                case 14:{ }break;
-                case 15:{ }break;
+                case 5:{galeria.opcion5();}break;
+                case 6:{galeria.opcion6();}break;
+                case 7:{galeria.opcion7();}break;
+                case 8:{galeria.opcion8();}break;
+                case 9:{galeria.opcion9();}break;
+                case 10:{galeria.opcion10();}break;
+                case 11:{galeria.opcion11();}break;
+                case 12:{galeria.opcion12();}break;
+                case 13:{galeria.opcion13();}break;
+                case 14:{galeria.opcion14();}break;
+                case 15:{galeria.opcion15();}break;
                 case 16:{seguir=false; }break;
-                // esta son para los desarrolladores
+                // para los desarrolladores
                 case 17:{galeria.opcion17();}break;
                 case 18:{galeria.opcion18();}break;
                 case 19:{galeria.opcion19();}break;
                 case 20:{galeria.opcion20();}break;
             }
-
         }while(seguir);
-
         System.out.println("Un gusto haberle ayudado");
-
     }
-
-
 }

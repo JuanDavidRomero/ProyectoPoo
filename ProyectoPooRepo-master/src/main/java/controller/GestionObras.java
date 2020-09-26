@@ -11,26 +11,22 @@ import java.util.Scanner;
 
 public class GestionObras
 {
-
     /* ver listado de obras disponibles
-
     se muestra un listado por pantalla que muestra la informacion
     basica de una obra(titulo,fecha de creacion,precio de referencia,una foto
     y sus dimensiones) solo deben salir las obras que estan disponibles
-    para la compra. se debe usar de un metodo to String()
-
-     */
+    para la compra. se debe usar de un metodo to String()*/
     public void VerObrasDisponibles(ArrayList<Compra> listaCompras, ArrayList<Obra> listaObras)
     {
         ArrayList<Obra> disponibles = new ArrayList<>();
-
         ArrayList<Obra> enCompra= new ArrayList<>();
 
+        // hace una lista de las obras con compras
         for(Compra obrasC : listaCompras)
         {
             enCompra.add(obrasC.getCompraObra());
         }
-
+        // compara la lista de las obras con compras y las obras normales
         for(Obra compara: listaObras)
         {
             if(!enCompra.contains(compara))
@@ -38,7 +34,7 @@ public class GestionObras
                 disponibles.add(compara);
             }
         }
-
+        //imprime
         System.out.println("***Obras Disponibles***");
         for(Obra impri: disponibles)
         {
@@ -46,26 +42,17 @@ public class GestionObras
         }
 
     }
-//
-    // solo mostrar las obras que cumplan con el criterio de busqueda
 
+    // solo mostrar las obras que cumplan con el criterio de busqueda
     public void BuscarObra(String criterio, ArrayList<Obra> listaObras)
     {
-        if(criterio.equals("titulo"))
+        switch(criterio)
         {
-            buscarObraTitulo(listaObras);
-        }
-        else if (criterio.equals("artista"))
-        {
-            buscarObraArtista(listaObras);
-        }
-        else if(criterio.equals("año"))
-        {
-            buscarObraAno(listaObras);
-        }
-        else
-        {
-            System.out.println("Criterio no encontrado");
+            // se ingresa el criterio de busqueda
+            case "titulo":{buscarObraTitulo(listaObras);}break;
+            case "artista":{buscarObraArtista(listaObras);}break;
+            case "año":{buscarObraAno(listaObras);}break;
+            default :{System.out.println("Criterio no encontrado");}break;
         }
     }
 
@@ -73,24 +60,25 @@ public class GestionObras
     {
         Scanner in = new Scanner(System.in);
         System.out.println("Ingrese el titulo de la obra a buscar: ");
-        String titulo = in.nextLine();
-        String buscar = titulo;
+        String buscar = in.nextLine();
         ArrayList <Obra> resultadoBusqueda = new ArrayList<>();
         boolean hayResultado =false;
+        // ciclo para obras
         for(Obra obraBuscadora : listaObras)
         {
+            // aqui se mira si el titulo buscado y el de la obra actual son iguales o se parecen
             if(obraBuscadora.getTitulo().contains(buscar))
             {
                 hayResultado=true;
                 resultadoBusqueda.add(obraBuscadora);
             }
         }
+        // se muestra en pantalla los resultados
         for(Obra mostar: resultadoBusqueda)
         {
             System.out.println(mostar.toString(1));
         }
-
-        if(hayResultado==false)
+        if(!hayResultado)
         {
             System.out.println("No hay ninguna obra que coincida con la busqueda");
         }
@@ -104,10 +92,13 @@ public class GestionObras
         ArrayList <Obra> resultadoBusqueda = new ArrayList<>();
         boolean encontro=false;
 
+        // ciclo para mirar las obras
         for(Obra obraBuscadora : listaObras)
         {
+            // ciclo para mirar los artistas de las obras
             for(Artista comparar: obraBuscadora.getArtista())
             {
+                // se une en un string el nombre y apellido del artista
                 String nombre= comparar.getNombres()+comparar.getApellidos();
                 if(nombre.contains(artista))
                 {
@@ -117,7 +108,8 @@ public class GestionObras
             }
         }
 
-        if(encontro==true)
+        // se imprimen resultados
+        if(encontro)
         {
             for(Obra mostar: resultadoBusqueda)
             {
@@ -138,6 +130,7 @@ public class GestionObras
         int ano= in.nextInt();
         ArrayList <Obra> resultadoBusqueda = new ArrayList<>();
 
+        // ciclo para ver las obras
         for(Obra obraBuscadora : listaObras)
         {
             Calendar fecha = obraBuscadora.getFecha();
@@ -148,7 +141,7 @@ public class GestionObras
                 resultadoBusqueda.add(obraBuscadora);
             }
         }
-
+        // se muestran los resultados
         if(encontrado)
         {
             for(Obra mostar: resultadoBusqueda)
@@ -164,8 +157,7 @@ public class GestionObras
 
     public Obra buscarObraCodigo(long codigo, ArrayList<Obra> listaObras)
     {
-        Obra temp = new Obra();
-
+        // ciclo para ver laso bras
         for(Obra buscadora: listaObras)
         {
             if(buscadora.getPid()==codigo)
@@ -173,28 +165,24 @@ public class GestionObras
                 return buscadora;
             }
         }
-
         return null;
     }
 //
 
-    /*
-    insertar una nueva obra a la lista de obras de la clase ControlGaleria
+    /* insertar una nueva obra a la lista de obras de la clase ControlGaleria
     debe listar los artistas existentes (cedula y nombreApellido),
     si no esta debe permitir agregar un nuevo artista , del artista se guarda su
     cedula,nombre,apellido, fecha de nacimiento y telefono
-
     no se puede crear una obra con el mismo codigo de una que ya exista
-    el codigo debe tener 7 numeros, no mas ni menos numeros
-
-     */
+    el codigo debe tener 7 numeros, no mas ni menos numeros */
     public void InsertarObra(ArrayList<Obra>listaObras, ArrayList<Artista> listaArtistas)
     {
         Scanner ingreso = new Scanner(System.in);
         Calendar fecha = Calendar.getInstance();
-
+        // ingreso de datos nueva obra
         System.out.println("\n***Ingrese los datos de la nueva obra***");
 
+        // se valida el pid con las codiciones de arriba
         System.out.println("\npid: ");
         long pid = ingreso.nextLong();
         ingreso = new Scanner(System.in);
@@ -206,108 +194,85 @@ public class GestionObras
             System.out.println("no se pudo crear la nueva obra");
             return;
         }
-
+        // ingreso titulo
         System.out.println("\nTitulo: ");
         String titulo = ingreso.nextLine();
         ingreso = new Scanner(System.in);
-
+        // ingreso año
         System.out.println("\nFecha ano :");
         int ano = ingreso.nextInt();
         ingreso = new Scanner(System.in);
-
-        System.out.println("\nFecha mes :");
-        int mes = ingreso.nextInt();
-        ingreso = new Scanner(System.in);
-
-        System.out.println("\nFecha dia :");
-        int dia = ingreso.nextInt();
-        ingreso = new Scanner(System.in);
-
+        // ingreso precio
         System.out.println("\nPrecioRef: ");
         double precioRef = ingreso.nextDouble();
         ingreso = new Scanner(System.in);
-
+        // ingreso dimensiones
         System.out.println("\nDimensiones: ");
         String dimensiones = ingreso.nextLine();
         ingreso = new Scanner(System.in);
 
-        fecha.set(ano,mes,dia);
-
+        // se crea el objeto Obra
+        fecha.set(Calendar.YEAR,ano);
         Obra nueva = new Obra(pid,titulo,fecha,precioRef,dimensiones);
 
+        boolean artistaDone=false;
 
-        if(!listaObras.equals(nueva.getPid()))
-        {
-            boolean artistaDone=false;
+        // proceso para añadir un artista a la obra
+        do{
+            System.out.println("***Lista Artistas***");
+            int numero=1;
+            // se muestran la opcion de artistas
+            System.out.println("\n***Lista artistas***\n");
+            System.out.println("0.Ingresar artista");
+            for(Artista mostrar: listaArtistas)
+            {
+                System.out.println(numero+"."+mostrar.toString(1));
+                numero+=1;
+            }
+            System.out.println("Para agregarle un Artista seleccione a uno de la lista");
+            int selec = ingreso.nextInt();
 
-            do{
-                System.out.println("Para agregarle un Artista seleccione a uno de la lista");
+            // se ingresa un nuevo artista a la lista
+            if(selec==0)
+            {
+                this.InserArtista(listaArtistas);
 
-                int numero=1;
-                System.out.println("\n***Lista artistas***\n");
-                for(Artista mostrar: listaArtistas)
+            }
+            // se seleciona un artista de la lista
+            else if (selec<=listaArtistas.size())
+            {
+                artistaDone=true;
+                selec-=1;
+                if(listaArtistas.get(selec)!=null)
                 {
-                    System.out.println(numero+"."+mostrar.toString(1));
-                    numero+=1;
-                }
-
-                System.out.println("Su artista se encuentra en la lista?: (s/n):");
-                String res = ingreso.nextLine();
-                char res1= res.charAt(0);
-
-                if(res1=='s')
-                {
-                    artistaDone=true;
-                }
-                else if(res1=='n')
-                {
-                    this.InserArtista(listaArtistas);
-                }
-
-            }while(!artistaDone);
-
-
-                System.out.println("Ingrese el numero del arista para asignarle a la obra: ");
-                ingreso = new Scanner(System.in);
-                int arti = ingreso.nextInt();
-                arti -=1;
-                if(listaArtistas.get(arti)!=null)
-                {
-                    Artista elnuevo = listaArtistas.get(arti);
+                    Artista elnuevo = listaArtistas.get(selec);
                     nueva.setArtista(elnuevo);
                     elnuevo.setObras(nueva);
                     listaObras.add(nueva);
                 }
-                else
-                {
-                    System.out.println("no hay ningun artista con ese numero");
-                }
-        }
+            }
+            else
+            {
+                System.out.println("Opcion no disponible");
+            }
 
-        else
-        {
-            System.out.println("lo siento pero ese codigo ya esta registrado");
-        }
+        }while(!artistaDone);
     }
 
-
-    /*
-    se debe solicitar el codigo de la obra a modificar, si no existe
+    /*se debe solicitar el codigo de la obra a modificar, si no existe
     se debe notificar que no esta y volver al menu
-
-    sui existe, debe mostrar los datos de lao bra, enumerados
+    si existe, debe mostrar los datos de lao bra, enumerados
     y solicitar el dato que se quiere modificar
-
     no se puede asignar un codigo de una obra que ya exista, si esto
-    pasa se muestra un mensaje de error y no se modifica nada
+    pasa se muestra un mensaje de error y no se modifica nada */
 
-
-     */
     public void modifiObra(long codigo, ArrayList<Obra> listaObras,ArrayList<Artista> listaArtista)
     {
         Obra trabajo =buscarObraCodigo(codigo,listaObras);
+        // condicion para ver si se encontro la obra con el codigo
         if(trabajo!=null)
         {
+            // presentacion info Obra
             System.out.println("Datos de la obra\n");
             System.out.println(
                     "1.Titulo: "+trabajo.getTitulo()+
@@ -341,36 +306,27 @@ public class GestionObras
                     System.out.println("Ingrese el nuevo pid:");
                     entrada= new Scanner(System.in);
                     long nuevoP= entrada.nextLong();
+                    // se valida que el pid este dentro de la restricciones
                     if(this.checkpid(nuevoP,listaObras))
                     {
                         trabajo.setPid(nuevoP);
                     }
-                    else{
+                    else
+                    {
                         System.out.println("Lo sentimos, no se le pudo asignar nuevo pid a la obra");
-
                     }
-
                 }break;
 
                 case 3:
                 {
-                    int ano,mes,dia;
+                    int ano;
                     System.out.println("Ingrese la nueva fecha");
                     System.out.println("Año:");
                     entrada= new Scanner(System.in);
                     ano=entrada.nextInt();
-                    System.out.println("Mes:");
-                    entrada= new Scanner(System.in);
-                    mes=entrada.nextInt();
-                    System.out.println("Dia:");
-                    entrada= new Scanner(System.in);
-                    dia=entrada.nextInt();
-
                     Calendar fechaN = Calendar.getInstance();
-                    fechaN.set(ano,mes,dia);
-
+                    fechaN.set(Calendar.YEAR,ano);
                     trabajo.setFecha(fechaN);
-
                 }break;
 
                 case 4:
@@ -379,7 +335,6 @@ public class GestionObras
                     entrada= new Scanner(System.in);
                     double nuevoPre= entrada.nextDouble();
                     trabajo.setPrecioRef(nuevoPre);
-
                 }break;
 
                 case 5:
@@ -397,15 +352,15 @@ public class GestionObras
                         System.out.println("Seleccione el nuevo artista de la obra");
                         int orden=1;
                         System.out.println("0.Ingresar nuevo artista");
+                        // se presenta lista de artistas
                         for(Artista impri: listaArtista)
                         {
                             System.out.println(orden+"."+impri.toString(1));
                             orden+=1;
                         }
-
                         entrada = new Scanner((System.in));
                         int selec = entrada.nextInt();
-
+                        // se añade un nuevo artista a la lista
                         if(selec==0)
                         {
                             this.InserArtista(listaArtista);
@@ -413,42 +368,34 @@ public class GestionObras
                         else
                         {
                             esta=true;
-
                             // quitarle la obra al artista anterior
                             for(Artista viejo: trabajo.getArtista())
                             {
                                 viejo.getObras().remove(trabajo);
                             }
-
                             // quitarle el artista a la obra
                             trabajo.getArtista().clear();
-
                             //asignarle el nuevo artista
                             Artista nuevo = listaArtista.get(selec-1);
                             trabajo.setArtista(nuevo);
+                            // añadirle la obra al artista nuevo
                             nuevo.setObras(trabajo);
-
                         }
-
                     }while(!esta);
-
                 }break;
+                default: System.out.println("Esa opcion no esta disponible"); break;
             }
-
         }
         else
         {
             System.out.println("Lo siento, no hemos encontrado la obra con el codigo "+codigo);
         }
-
     }
 
-    private void imprimirListas()
-    {
 
-    }
+    //la funcion pide todos los datos de un artista ( menos la obra) y lo añade a la listaArtistas
 
-    public void InserArtista(ArrayList<Artista> listaArtistas)
+      public void InserArtista(ArrayList<Artista> listaArtistas)
     {
         System.out.println("Ingrese los datos del artista\n");
 
@@ -484,13 +431,12 @@ public class GestionObras
         System.out.println("Telefono: ");
         long telefono = ingreso.nextLong();
 
-
+        // se crea el objeto Artista y se añade a la lista
         Artista nuevo = new Artista(condigoArtista,cedula,nombre,apellidos,fechaNacimineto,telefono);
-
         listaArtistas.add(nuevo);
-
     }
 
+    // la funcion se encargar de validar que el pid ingresado este de acuerdo a la restricciones
     private boolean checkpid(long pid, ArrayList<Obra> listaObras)
     {
         if((pid/1000000<=0))
@@ -503,7 +449,6 @@ public class GestionObras
             System.out.println("Te pasaste de digitos! son solo 7");
             return false;
         }
-
         for(Obra checker: listaObras)
         {
             if(checker.getPid()==pid)
@@ -512,15 +457,8 @@ public class GestionObras
                 return false;
             }
         }
-
         return true;
     }
 
-
-
-    public void insertarArtistaAutomatico(Artista nuevo, ArrayList<Artista> listaArtistas)
-    {
-        listaArtistas.add(nuevo);
-    }
 
 }

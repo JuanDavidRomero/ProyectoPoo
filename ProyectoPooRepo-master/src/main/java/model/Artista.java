@@ -15,7 +15,7 @@ public class Artista
 
     // CONSTRUCTORES
     public Artista ()
-    {   }
+    {}
 
     public Artista(long codigoArtista, long cedula, String nombres, String apellidos, Calendar fechaNacimiento, long telefono)
     {
@@ -31,7 +31,6 @@ public class Artista
     public long getCodigoArtista() {
         return codigoArtista;
     }
-
     public void setCodigoArtista(long codigoArtista) {
         this.codigoArtista = codigoArtista;
     }
@@ -39,7 +38,6 @@ public class Artista
     public long getCedula() {
         return cedula;
     }
-
     public void setCedula(long cedula) {
         this.cedula = cedula;
     }
@@ -47,7 +45,6 @@ public class Artista
     public String getNombres() {
         return nombres;
     }
-
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
@@ -55,7 +52,6 @@ public class Artista
     public String getApellidos() {
         return apellidos;
     }
-
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
@@ -63,7 +59,6 @@ public class Artista
     public Calendar getFechaNacimiento() {
         return fechaNacimiento;
     }
-
     public void setFechaNacimiento(Calendar fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
@@ -71,7 +66,6 @@ public class Artista
     public long getTelefono() {
         return telefono;
     }
-
     public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
@@ -79,14 +73,13 @@ public class Artista
     public ArrayList<Obra> getObras() {
         return obras;
     }
-
     public void setObras(Obra obra) {
 
         this.obras.add(obra);
     }
 
-    // toString
 
+    // toString
     public String toString()
     {
         return "Artista{" +
@@ -103,19 +96,11 @@ public class Artista
     public String toString(int a)
     {
         return nombres+" "+apellidos+" Cc."+cedula;
-
     }
     public String toString(int a,int b)
     {
         return nombres+" "+apellidos;
-
     }
 
-    // Metodos - I
 
-    public void ingresarArtista(Artista artista, ArrayList<Artista> listaArtistas)
-    {
-        listaArtistas.add(artista);
-
-    };
 }
