@@ -9,6 +9,7 @@ public class Compra {
     private String nombreRepartidor;
 
     private Cliente compraCliente = new Cliente();
+    private Obra compraObra = new Obra();
 
     public long getNumeroPedido() {
         return numeroPedido;
@@ -48,5 +49,31 @@ public class Compra {
 
     public void setCompraCliente(Cliente compraCliente) {
         this.compraCliente = compraCliente;
+    }
+
+    public Obra getCompraObra() {
+        return compraObra;
+    }
+
+    public void setCompraObra(Obra compraObra) {
+        this.compraObra = compraObra;
+    }
+
+    public Compra(){}
+
+    public Compra(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor, Cliente compraCliente, Obra compraObra) {
+        this.numeroPedido = numeroPedido;
+        this.fechaRecibido = fechaRecibido;
+        this.pagado = pagado;
+        this.nombreRepartidor = nombreRepartidor;
+        this.compraCliente = compraCliente;
+        this.compraObra = compraObra;
+    }
+
+    public Compra(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor) {
+        this.numeroPedido = numeroPedido;
+        this.fechaRecibido = fechaRecibido;
+        this.pagado = pagado;
+        this.nombreRepartidor = nombreRepartidor;
     }
 }

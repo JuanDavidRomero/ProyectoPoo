@@ -2,6 +2,7 @@ package view;
 
 import controller.ControlGaleria;
 import model.Cliente;
+import model.Obra;
 
 import java.util.Scanner;
 
@@ -51,14 +52,12 @@ public class PantallaGaleria {
         //
 
         //REALIZAR COMPRA DE UNA OBRA
+        long nPedido = 1000;
         System.out.println("Dijite el codigo de identificacion del cliente");
         codId = scan.nextInt();
         System.out.println("Dijite el PID de la obra que desea comprar");
         long pid = scan.nextInt();
-        clienteaux = pantalla.galeria.buscarCliente(codId);
-        if(clienteaux != null){
-
-        }
+        pantalla.galeria.RealizarCompraDeUnaObra(codId, pid, nPedido);
 
     }
 }
