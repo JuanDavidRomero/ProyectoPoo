@@ -1,6 +1,8 @@
 package controller;
 
 import model.Cliente;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionCliente {
@@ -23,6 +25,7 @@ public class GestionCliente {
                 break;
             case 2:
                 System.out.println("Dijite el/los nuevo/s nombre/s del cliente");
+                scan.nextLine();
                 cliente.setNombres(scan.nextLine());
                 break;
             case 3:
@@ -44,11 +47,9 @@ public class GestionCliente {
         }
     }
 
-    public void eliminarUnCliente(){
-
-    }
-
-    public void RealizarCompraDeUnaObra(){
-
+    public Cliente eliminarUnCliente(ArrayList<Cliente> eliminar, Cliente clientE){
+        Cliente eliminado = eliminar.remove(eliminar.indexOf(clientE));
+        System.out.println("Cliente eliminado exitosamente");
+        return eliminado;
     }
 }

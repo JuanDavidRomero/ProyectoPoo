@@ -58,6 +58,17 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public Cliente(){ }
+
+    public Cliente(long codigoCliente, long cedula, String nombres, String apellidos, String direccionEntrega, long telefono) {
+        this.codigoCliente = codigoCliente;
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.direccionEntrega = direccionEntrega;
+        this.telefono = telefono;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
