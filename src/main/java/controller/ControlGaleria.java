@@ -33,10 +33,20 @@ public class ControlGaleria {
 
     private GestionCliente gestionCliente = new GestionCliente();
 
+    public void listaClientes(ArrayList<Cliente> listaClientes){
+        for(Cliente recorrer: listaClientes){
+            System.out.println(recorrer.toString(1));
+        }
+    }
+
     public Cliente buscarCliente(long codigo){
         for (Cliente recorrer: listaClientes) {
-            if (recorrer.getCodigoCliente() == codigo)
+            if (recorrer.getCodigoCliente() == codigo) {
+                System.out.println("Cedula: "+recorrer.getCedula());
+                System.out.println("Nombre completo: "+recorrer.getNombres()+" "+recorrer.getApellidos());
+                System.out.println("Telefono: "+recorrer.getTelefono());
                 return recorrer;
+            }
         }
         System.out.println("El empleado no existe");
         return null;
@@ -94,5 +104,47 @@ public class ControlGaleria {
         }
     }
 
+    public Compra eliminarCompraObra(){
+        Compra eliminado;
+        System.out.println("Dijite el numero de compra a eliminar");
+        long borrar = scan.nextLong();
+        for(Compra recorrer: compras){
+            if(recorrer.getNumeroPedido() == borrar){
+                System.out.println("¿Esta seguro de borrar la compra? dijite si/no");
+                String confirmacion = scan.nextLine();
+                if(confirmacion == "si") {
+                    eliminado = compras.remove(compras.indexOf(recorrer));
+                    return eliminado;
+                }
+                else
+                    return null;
+            }
+        }
+        System.out.println("El numero de compra no existe");
+        return null;
+    }
+
+    public void agregarCliente(){
+        System.out.println("Digite el codigo del nuevo cliente");
+        long codigoCliente=scan.nextLong();
+        System.out.println("Digite la cedula del nuevo cliente");
+        long cedula=scan.nextLong();
+        System.out.println("Digite el/los nombre/nombres del nuevo cliente");
+        String nombres=scan.nextLine();
+        System.out.println("Digite el/los apellido/apellidos del nuevo cliente");
+        String apellidos=scan.nextLine();
+        System.out.println("Digite la direccion de entrega del nuevo cliente");
+        String direccion=scan.nextLine();
+        System.out.println("Digite el telefono del nuevo cliente");
+        long telefono=scan.nextLong();
+        Cliente clienteNuevo=new Cliente(codigoCliente,cedula,nombres,apellidos,direccion,telefono);
+        if(!this.listaClientes.contains(clienteNuevo.getCodigoCliente())){
+            listaClientes.add(clienteNuevo);
+            System.out.println("Nuevo cliente agregado");
+        }
+        else{
+            System.out.println("El cliente ya se encuenta en la lista");
+        }
+    }
 
 }
