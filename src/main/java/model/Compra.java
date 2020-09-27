@@ -8,9 +8,30 @@ public class Compra {
     private Calendar fechaRecibido;
     private boolean pagado;
     private String nombreRepartidor;
-
     private Cliente compraCliente = new Cliente();
     private Obra compraObra = new Obra();
+
+
+    // Construcutores
+    public Compra(){}
+
+    public Compra(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor, Cliente compraCliente, Obra compraObra) {
+        this.numeroPedido = numeroPedido;
+        this.fechaRecibido = fechaRecibido;
+        this.pagado = pagado;
+        this.nombreRepartidor = nombreRepartidor;
+        this.compraCliente = compraCliente;
+        this.compraObra = compraObra;
+    }
+
+    public Compra(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor) {
+        this.numeroPedido = numeroPedido;
+        this.fechaRecibido = fechaRecibido;
+        this.pagado = pagado;
+        this.nombreRepartidor = nombreRepartidor;
+    }
+
+    //Acessors
 
     public long getNumeroPedido() {
         return numeroPedido;
@@ -60,34 +81,23 @@ public class Compra {
         this.compraObra = compraObra;
     }
 
-    public Compra(){}
 
-    public Compra(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor, Cliente compraCliente, Obra compraObra) {
-        this.numeroPedido = numeroPedido;
-        this.fechaRecibido = fechaRecibido;
-        this.pagado = pagado;
-        this.nombreRepartidor = nombreRepartidor;
-        this.compraCliente = compraCliente;
-        this.compraObra = compraObra;
-    }
-
-    public Compra(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor) {
-        this.numeroPedido = numeroPedido;
-        this.fechaRecibido = fechaRecibido;
-        this.pagado = pagado;
-        this.nombreRepartidor = nombreRepartidor;
-    }
-
-    @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Compra compra = (Compra) o;
         return numeroPedido == compra.numeroPedido;
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(numeroPedido);
+    }
+
+    //toString
+    public String toString(){
+        String nombre_completo_cliente = this.compraCliente.getNombres() + " " + this.compraCliente.getApellidos();
+        return "Obra:\t" + compraObra.getTitulo() + "\tPID:\t" + compraObra.getPid()+"\n"
+                + "\tCliente:\t" + nombre_completo_cliente + "\tFecha:\t" + this.fechaRecibido.getInstance().getTime() + "\n\n";
     }
 }

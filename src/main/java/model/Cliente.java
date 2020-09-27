@@ -2,7 +2,8 @@ package model;
 
 import java.util.Objects;
 
-public class Cliente {
+public class Cliente
+{
     private long codigoCliente;
     private long cedula;
     private String nombres;
@@ -10,54 +11,7 @@ public class Cliente {
     private String direccionEntrega;
     private long telefono;
 
-    public long getCodigoCliente() {
-        return codigoCliente;
-    }
-
-    public void setCodigoCliente(long codigoCliente) {
-        this.codigoCliente = codigoCliente;
-    }
-
-    public long getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(long cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getDireccionEntrega() {
-        return direccionEntrega;
-    }
-
-    public void setDireccionEntrega(String direccionEntrega) {
-        this.direccionEntrega = direccionEntrega;
-    }
-
-    public long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(long telefono) {
-        this.telefono = telefono;
-    }
-
+    // Constructores
     public Cliente(){ }
 
     public Cliente(long codigoCliente, long cedula, String nombres, String apellidos, String direccionEntrega, long telefono) {
@@ -69,7 +23,51 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    @Override
+    //Acessors
+    public long getCodigoCliente() {
+        return codigoCliente;
+    }
+    public void setCodigoCliente(long codigoCliente) {
+        this.codigoCliente = codigoCliente;
+    }
+
+    public long getCedula() {
+        return cedula;
+    }
+    public void setCedula(long cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getDireccionEntrega() {
+        return direccionEntrega;
+    }
+    public void setDireccionEntrega(String direccionEntrega) {
+        this.direccionEntrega = direccionEntrega;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
+
+
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -77,12 +75,13 @@ public class Cliente {
         return codigoCliente == cliente.codigoCliente;
     }
 
-    @Override
+
     public int hashCode() {
         return Objects.hash(codigoCliente);
     }
 
-    @Override
+
+    // toString
     public String toString() {
         return "Cliente{" +
                 " ccodigo del Cliente= " + codigoCliente +
@@ -94,11 +93,16 @@ public class Cliente {
                 '}';
     }
 
-    public String toString(int x) {
+    public String toString(int x, int y ) {
         String nombreCompleto=nombres+" "+apellidos;
-        return "Cedula: "+cedula+
-                "\n Nombre: "+nombreCompleto+
-                "\n Telefono: "+telefono;
+        return "Nombre: "+nombreCompleto;
+    }
 
+    public String toString(int x) {
+        return
+                "cedula=" + cedula +
+                        ", nombres='" + nombres + '\'' +
+                        ", apellidos='" + apellidos + '\'' +
+                        ", telefono=" + telefono;
     }
 }

@@ -52,4 +52,57 @@ public class GestionCliente {
         System.out.println("Cliente eliminado exitosamente");
         return eliminado;
     }
+
+    public void listaClientes(ArrayList<Cliente> listaClientes)
+    {
+        for(Cliente recorrer: listaClientes){
+            System.out.println();
+            System.out.println(recorrer.toString(1));
+        }
+    }
+
+    public Cliente buscarCliente(long codigo, ArrayList<Cliente> listaClientes)
+    {
+        for (Cliente recorrer: listaClientes)
+        {
+            if (recorrer.getCodigoCliente() == codigo)
+            {
+                System.out.println("Cedula: "+recorrer.getCedula());
+                System.out.println("Nombre completo: "+recorrer.getNombres()+" "+recorrer.getApellidos());
+                System.out.println("Telefono: "+recorrer.getTelefono());
+                return recorrer;
+            }
+        }
+        System.out.println("El cliente no existe");
+        return null;
+    }
+
+    public void agregarCliente(ArrayList<Cliente> listaClientes)
+    {
+        System.out.println("Digite el codigo del nuevo cliente");
+        long codigoCliente=scan.nextLong();
+        System.out.println("Digite la cedula del nuevo cliente");
+        long cedula=scan.nextLong();
+        System.out.println("Digite el/los nombre/nombres del nuevo cliente");
+        scan.nextLine();
+        String nombres=scan.nextLine();
+        System.out.println("Digite el/los apellido/apellidos del nuevo cliente");
+        String apellidos=scan.nextLine();
+        System.out.println("Digite la direccion de entrega del nuevo cliente");
+        String direccion=scan.nextLine();
+        System.out.println("Digite el telefono del nuevo cliente");
+        long telefono=scan.nextLong();
+        Cliente clienteNuevo=new Cliente(codigoCliente,cedula,nombres,apellidos,direccion,telefono);
+        if(!listaClientes.contains(clienteNuevo.getCodigoCliente()))
+        {
+            listaClientes.add(clienteNuevo);
+            System.out.println("Nuevo cliente agregado");
+        }
+        else{
+            System.out.println("El cliente ya se encuenta en la lista");
+        }
+    }
+
+
 }
+
