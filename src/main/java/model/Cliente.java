@@ -93,4 +93,12 @@ public class Cliente {
                 ",  telefono= " + telefono +
                 '}';
     }
+
+    public String toString(int x) {
+        String nombreCompleto=nombres+" "+apellidos;
+        return "Cedula: "+cedula+
+                "\n Nombre: "+nombreCompleto+
+                "\n Telefono: "+telefono;
+
+    }
 }
